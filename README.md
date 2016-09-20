@@ -26,3 +26,10 @@ Zoom:
 * Installs with one command
 * Runs with one command
 * Trusts all users
+
+Hacking
+-------
+
+    [$]> pyvenv venv
+    [$]> source venv/bin/activate
+    [$]> pip install -r requirements.txt
