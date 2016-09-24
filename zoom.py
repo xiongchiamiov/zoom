@@ -7,11 +7,11 @@ from flask import (
 )
 app = Flask(__name__)
 
-@app.route('/create/')
+@app.route('/create')
 def create_new_link():
     return render_template('create.html')
 
-@app.route('/create/', methods=['POST'])
+@app.route('/create', methods=['POST'])
 def handle_new_link():
     link_id = request.form['short-id']
     url = request.form['long-url']
