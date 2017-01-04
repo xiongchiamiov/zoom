@@ -61,4 +61,6 @@ def handle_new_link():
 @app.route('/<link_id>')
 def redirect_to_url(link_id):
     url = query_db('select url from redirects where id=?', [link_id], one=True)
+    if not url:
+        return 'not found'
     return redirect(url, code=307)
