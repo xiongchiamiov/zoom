@@ -1,17 +1,51 @@
 #!/usr/bin/env python3
 
+import os
+import sqlite3
+
 from flask import (
     Flask,
+    g,
     redirect,
     render_template,
     request,
 )
 app = Flask(__name__)
 
-redirects = {
-    'foo': 'https://duckduckgo.com/',
-    'bar': 'https://python.org',
-}
+def get_db():
+    db = getattr(g, '_database', None)
+    if db is None:
+        db_path = os.path.join(app.instance_path, 'zoom.db')
+        db = sqlite3.connect(db_path)
+        db.row_factory = sqlite3.Row
+        g._database = db
+
+    return db
+
+@app.teardown_appcontext
+def close_connection(exception):
+    db = getattr(g, '_database', None)
+    if db is not None:
+        db.close()
+
+def init_db():
+    """Initialize the database.
+
+    Use this like so:
+        >>> from zoom import init_db
+        >>> init_db()
+    """
+    with app.app_context():
+        db = get_db()
+        with app.open_resource('schema.sql', mode='r') as f:
+            db.cursor().executescript(f.read())
+        db.commit()
+
+def query_db(query, args=(), one=False):
+    cur = get_db().execute(query, args)
+    rv = cur.fetchall()
+    cur.close()
+    return (rv[0] if rv else None) if one else rv
 
 @app.route('/create')
 def create_new_link():
@@ -26,5 +60,5 @@ def handle_new_link():
 
 @app.route('/<link_id>')
 def redirect_to_url(link_id):
-    url = redirects[link_id]
+    url = query_db('select url from redirects where id=?', [link_id], one=True)
     return redirect(url, code=307)

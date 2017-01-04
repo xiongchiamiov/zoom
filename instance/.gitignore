@@ -1,0 +1,4 @@
+# This is the default instance folder, which is used for temporary files that
+# shouldn't be tracked.
+# http://flask.pocoo.org/docs/0.11/config/#instance-folders
+*
