@@ -17,5 +17,13 @@
 
             <button type="submit">Submit</button>
         </form>
+        <table>
+            {% for redirect in redirects %}
+                <tr>
+                    <td>{{ redirect.id }}</td>
+                    <td>{{ redirect.url }}</td>
+                </tr>
+            {% endfor %}
+        </table>
     </body>
 </html>

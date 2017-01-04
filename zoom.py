@@ -49,18 +49,22 @@ def query_db(query, args=(), one=False):
 
 @app.route('/create')
 def create_new_link():
-    return render_template('create.html')
+    redirects = query_db('select * from redirects')
+    return render_template('create.html', redirects=redirects)
 
 @app.route('/create', methods=['POST'])
 def handle_new_link():
     link_id = request.form['short-id']
     url = request.form['long-url']
+    db = get_db()
+    db.execute('insert into redirects values (?, ?)', (link_id, url))
+    db.commit()
 
     return 'ok'
 
 @app.route('/<link_id>')
 def redirect_to_url(link_id):
-    url = query_db('select url from redirects where id=?', [link_id], one=True)
-    if not url:
+    row = query_db('select url from redirects where id=?', (link_id,), one=True)
+    if not row:
         return 'not found'
-    return redirect(url, code=307)
+    return redirect(row['url'], code=307)
