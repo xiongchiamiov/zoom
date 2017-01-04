@@ -56,9 +56,12 @@ def create_new_link():
 def handle_new_link():
     link_id = request.form['short-id']
     url = request.form['long-url']
-    db = get_db()
-    db.execute('insert into redirects values (?, ?)', (link_id, url))
-    db.commit()
+    try:
+        db = get_db()
+        db.execute('insert into redirects values (?, ?)', (link_id, url))
+        db.commit()
+    except sqlite3.IntegrityError:
+        return 'sorry, key already used'
 
     return 'ok'
 
