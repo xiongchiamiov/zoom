@@ -3,7 +3,7 @@
 import argparse
 
 from gevent.wsgi import WSGIServer
-from zoom import app
+from zoom_shortener import app
 
 parser = argparse.ArgumentParser(
             description='Run the Zoom link shortener webserver.')
