@@ -36,7 +36,7 @@ def init_db():
     """Initialize the database.
 
     Use this like so:
-        >>> from zoom import init_db
+        >>> from zoom_shortener import init_db
         >>> init_db()
     """
     with app.app_context():
