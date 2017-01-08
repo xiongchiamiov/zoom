@@ -14,7 +14,7 @@ setup(
     ),
     packages=['zoom_shortener'],
     package_data={
-        'zoom_shortener': ['templates/*'],
+        'zoom_shortener': ['templates/*', 'schema.sql'],
     },
     scripts=['bin/zoom'],
 )
