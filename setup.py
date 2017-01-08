@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='zoom_shortener',
-    version='0.1.1',
+    version='0.2.0',
     url='https://github.com/xiongchiamiov/zoom',
     author='James Pearson Hughes',
     author_email='pearson@changedmy.name',
