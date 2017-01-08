@@ -16,6 +16,7 @@ from flask import (
 )
 app = Flask(__name__)
 
+
 def get_db():
     db = getattr(g, '_database', None)
     if db is None:
@@ -40,10 +41,18 @@ def init_db():
         >>> init_db()
     """
     with app.app_context():
+        db_path = os.path.join(app.instance_path, 'zoom.db')
+        if os.path.exists(db_path):
+            return
+
+        print('Setting up database at {}...'.format(db_path))
+        os.makedirs(app.instance_path, exist_ok=True)
+
         db = get_db()
         with app.open_resource('schema.sql', mode='r') as f:
             db.cursor().executescript(f.read())
         db.commit()
+        print('done!')
 
 def query_db(query, args=(), one=False):
     cur = get_db().execute(query, args)
@@ -75,3 +84,6 @@ def redirect_to_url(link_id):
     if not row:
         return 'not found'
     return redirect(row['url'], code=307)
+
+
+init_db()

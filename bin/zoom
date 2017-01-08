@@ -12,4 +12,5 @@ parser.add_argument('--port', default=80, type=int,
 args = parser.parse_args()
 
 http_server = WSGIServer(('', args.port), app)
+print('Serving on port {}'.format(args.port))
 http_server.serve_forever()
