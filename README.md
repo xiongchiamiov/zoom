@@ -27,6 +27,12 @@ Zoom:
 * Runs with one command
 * Trusts all users
 
+Use
+---
+
+    [$]> pip install zoom_shortener
+    [$]> zoom --port 8080
+
 Hacking
 -------
 
