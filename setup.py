@@ -9,7 +9,7 @@ setup(
     author='James Pearson Hughes',
     author_email='pearson@changedmy.name',
     install_requires=(
-        'Flask >= 0.11.1, < 0.12',
+        'Flask >= 2.0.0, < 3.0.0',
         'gevent >= 21.12.0',
     ),
     packages=['zoom_shortener'],
@@ -25,7 +25,10 @@ setup(
         'Intended Audience :: System Administrators',
         'License :: OSI Approved :: MIT License',
         'Natural Language :: English',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
     ],
 )
