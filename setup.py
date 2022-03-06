@@ -10,7 +10,7 @@ setup(
     author_email='pearson@changedmy.name',
     install_requires=(
         'Flask >= 0.11.1, < 0.12',
-        'gevent >= 1.2.0, < 2.0',
+        'gevent >= 21.12.0',
     ),
     packages=['zoom_shortener'],
     package_data={
@@ -25,9 +25,6 @@ setup(
         'Intended Audience :: System Administrators',
         'License :: OSI Approved :: MIT License',
         'Natural Language :: English',
-        'Programming Language :: Python :: 3.2',
-        'Programming Language :: Python :: 3.3',
-        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
     ],

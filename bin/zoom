@@ -2,7 +2,7 @@
 
 import argparse
 
-from gevent.wsgi import WSGIServer
+from gevent.pywsgi import WSGIServer
 from zoom_shortener import app
 
 parser = argparse.ArgumentParser(
