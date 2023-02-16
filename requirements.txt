@@ -5,6 +5,6 @@ greenlet==1.1.2
 itsdangerous==2.1.0
 Jinja2==3.0.3
 MarkupSafe==2.1.0
-Werkzeug==2.0.3
+Werkzeug==2.2.3
 zope.event==4.5.0
 zope.interface==5.4.0
